@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">DiceRoller</string>
+    <string name="hello_word_label">Hello Word!</string>
+    <string name="roll_label">Roll</string>
+    <string name="count_label">Count</string>
+    <string name="reset_label">Reset</string>
+    <string name="dice_label">DICE</string>
+</resources>
