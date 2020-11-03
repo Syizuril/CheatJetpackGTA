@@ -7,18 +7,23 @@ import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.TextView
+import androidx.databinding.DataBindingUtil
+import com.example.aboutme.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
-    lateinit var editText: TextView
-    lateinit var nicknameTextView: TextView
-    lateinit var buttonDone: Button
+    private lateinit var editText: TextView
+    private lateinit var nicknameTextView: TextView
+    private lateinit var buttonDone: Button
+    private lateinit var binding: ActivityMainBinding
+    private val myName: MyName = MyName("Syekh Syihabuddin Azmil Umri")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        editText = findViewById(R.id.nickname_edit)
-        nicknameTextView = findViewById(R.id.nickname_text)
-        buttonDone = findViewById(R.id.done_button)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+        editText = binding.nicknameEdit
+        nicknameTextView = binding.nicknameText
+        buttonDone = binding.doneButton
+        binding.myName = myName
         buttonDone.setOnClickListener {
             addNickname(it)
         }
@@ -28,9 +33,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun addNickname(view: View){
-        nicknameTextView.text = editText.text
+        myName?.nickname = editText.text.toString()
+        binding.invalidateAll()
         editText.visibility = View.GONE
-        view.visibility = View.GONE
+        binding.doneButton.visibility = View.GONE
         nicknameTextView.visibility = View.VISIBLE
         hideKeyboard(view)
     }
@@ -48,7 +54,7 @@ class MainActivity : AppCompatActivity() {
     private fun updateNickname(view: View){
         editText.visibility = View.VISIBLE
         buttonDone.visibility = View.VISIBLE
-        view.visibility = View.GONE
+        binding.doneButton.visibility = View.GONE
         editText.requestFocus()
         showKeyboard(editText)
     }
