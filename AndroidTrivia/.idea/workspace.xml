@@ -5,78 +5,23 @@
       <config />
     </shared>
   </component>
+  <component name="AndroidLogFilters">
+    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="Title" />
+    <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
+  </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="dc660404-d9e1-4579-ba4e-5fd7e2528aef" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../DessertClicker/.gradle/buildOutputCleanup/cache.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DessertClicker/.gradle/checksums/md5-checksums.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DessertClicker/.gradle/checksums/sha1-checksums.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DessertClicker/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DessertClicker/.idea/caches/build_file_checksums.ser" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DessertClicker/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DessertClicker/.idea/gradle.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DessertClicker/.idea/jarRepositories.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DessertClicker/.idea/libraries/Gradle__androidx_activity_activity_1_0_0_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DessertClicker/.idea/libraries/Gradle__androidx_annotation_annotation_1_1_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DessertClicker/.idea/libraries/Gradle__androidx_appcompat_appcompat_1_2_0_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DessertClicker/.idea/libraries/Gradle__androidx_appcompat_appcompat_resources_1_2_0_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DessertClicker/.idea/libraries/Gradle__androidx_arch_core_core_common_2_1_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DessertClicker/.idea/libraries/Gradle__androidx_arch_core_core_runtime_2_0_0_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DessertClicker/.idea/libraries/Gradle__androidx_collection_collection_1_1_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DessertClicker/.idea/libraries/Gradle__androidx_cursoradapter_cursoradapter_1_0_0_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DessertClicker/.idea/libraries/Gradle__androidx_customview_customview_1_0_0_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DessertClicker/.idea/libraries/Gradle__androidx_databinding_databinding_adapters_4_1_0_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DessertClicker/.idea/libraries/Gradle__androidx_databinding_databinding_common_4_1_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DessertClicker/.idea/libraries/Gradle__androidx_databinding_databinding_runtime_4_1_0_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DessertClicker/.idea/libraries/Gradle__androidx_databinding_viewbinding_4_1_0_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DessertClicker/.idea/libraries/Gradle__androidx_drawerlayout_drawerlayout_1_0_0_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DessertClicker/.idea/libraries/Gradle__androidx_fragment_fragment_1_1_0_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DessertClicker/.idea/libraries/Gradle__androidx_interpolator_interpolator_1_0_0_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DessertClicker/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_common_2_1_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DessertClicker/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_livedata_2_0_0_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DessertClicker/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_livedata_core_2_0_0_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DessertClicker/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_runtime_2_1_0_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DessertClicker/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_viewmodel_2_1_0_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DessertClicker/.idea/libraries/Gradle__androidx_loader_loader_1_0_0_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DessertClicker/.idea/libraries/Gradle__androidx_savedstate_savedstate_1_0_0_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DessertClicker/.idea/libraries/Gradle__androidx_vectordrawable_vectordrawable_1_1_0_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DessertClicker/.idea/libraries/Gradle__androidx_vectordrawable_vectordrawable_animated_1_1_0_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DessertClicker/.idea/libraries/Gradle__androidx_versionedparcelable_versionedparcelable_1_1_0_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DessertClicker/.idea/libraries/Gradle__androidx_viewpager_viewpager_1_0_0_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DessertClicker/.idea/libraries/Gradle__com_jakewharton_timber_timber_4_7_1_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DessertClicker/.idea/libraries/Gradle__org_jetbrains_annotations_16_0_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DessertClicker/.idea/libraries/Gradle__org_jetbrains_kotlin_kotlin_stdlib_1_3_72.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DessertClicker/.idea/libraries/Gradle__org_jetbrains_kotlin_kotlin_stdlib_common_1_3_72.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DessertClicker/.idea/libraries/Gradle__org_jetbrains_kotlin_kotlin_stdlib_jdk7_1_3_72.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DessertClicker/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DessertClicker/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DessertClicker/.idea/modules/DessertClicker.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DessertClicker/.idea/modules/app/DessertClicker.app.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DessertClicker/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DessertClicker/app/build/generated/ap_generated_sources/debug/out/androidx/databinding/DataBinderMapperImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DessertClicker/app/build/generated/ap_generated_sources/debug/out/androidx/databinding/DataBindingComponent.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DessertClicker/app/build/generated/ap_generated_sources/debug/out/androidx/databinding/library/baseAdapters/BR.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DessertClicker/app/build/generated/ap_generated_sources/debug/out/com/example/android/dessertclicker/BR.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DessertClicker/app/build/generated/ap_generated_sources/debug/out/com/example/android/dessertclicker/DataBinderMapperImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DessertClicker/app/build/generated/ap_generated_sources/debug/out/com/example/android/dessertclicker/databinding/ActivityMainBindingImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DessertClicker/app/build/generated/source/buildConfig/debug/com/example/android/dessertclicker/BuildConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DessertClicker/app/src/main/java/com/example/android/dessertclicker/ClickerApplication.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.5/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/app/AndroidTrivia.app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/app/AndroidTrivia.app.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/android/navigation/TitleFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/android/navigation/TitleFragment.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[Realme_API_29]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -188,33 +133,9 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
-    <state x="960" y="382" key="AndroidCreateResourceFileDialog" timestamp="1604689940299">
+    <state x="1120" y="275" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1614913736932">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state x="960" y="382" key="AndroidCreateResourceFileDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1604689940299" />
-    <state x="1284" y="329" key="AndroidCreateXmlResourceDialog" timestamp="1604677854877">
-      <screen x="0" y="0" width="1920" height="1080" />
-    </state>
-    <state x="1284" y="329" key="AndroidCreateXmlResourceDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1604677854877" />
-    <state x="1220" y="298" key="FileChooserDialogImpl" timestamp="1604914271406">
-      <screen x="0" y="0" width="1920" height="1080" />
-    </state>
-    <state x="1220" y="298" key="FileChooserDialogImpl/0.0.1920.1080@0.0.1920.1080" timestamp="1604914271406" />
-    <state width="915" height="297" key="GridCell.Tab.0.bottom" timestamp="1604677967552">
-      <screen x="0" y="0" width="1920" height="1080" />
-    </state>
-    <state width="915" height="297" key="GridCell.Tab.0.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1604677967552" />
-    <state width="915" height="297" key="GridCell.Tab.0.center" timestamp="1604677967552">
-      <screen x="0" y="0" width="1920" height="1080" />
-    </state>
-    <state width="915" height="297" key="GridCell.Tab.0.center/0.0.1920.1080@0.0.1920.1080" timestamp="1604677967552" />
-    <state width="915" height="297" key="GridCell.Tab.0.left" timestamp="1604677967552">
-      <screen x="0" y="0" width="1920" height="1080" />
-    </state>
-    <state width="915" height="297" key="GridCell.Tab.0.left/0.0.1920.1080@0.0.1920.1080" timestamp="1604677967552" />
-    <state width="915" height="297" key="GridCell.Tab.0.right" timestamp="1604677967552">
-      <screen x="0" y="0" width="1920" height="1080" />
-    </state>
-    <state width="915" height="297" key="GridCell.Tab.0.right/0.0.1920.1080@0.0.1920.1080" timestamp="1604677967552" />
+    <state x="1120" y="275" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1614913736932" />
   </component>
 </project>
