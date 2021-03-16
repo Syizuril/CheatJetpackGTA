@@ -179,9 +179,7 @@ Baseline constraints:
 # **Data Binding Basic**
 Steps to use data binding to replace calls to `findViewById()`:
 
-1.  Enable data binding in the android section of the `build.gradle` file: `buildFeatures {``dataBinding true`
-
-`}`
+1.  Enable data binding in the android section of the `build.gradle` file: `buildFeatures {``dataBinding true``}`
 
 1.  Use `<layout>` as the root view in your XML layout.
 2.  Define a binding variable: `private lateinit var binding: ActivityMainBinding`
