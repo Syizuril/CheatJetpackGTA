@@ -13,6 +13,7 @@ Android Kotlin Cheatsheet
 * [Linear Layout using the Layout Editor](#Linear-Layout-using-the-Layout-Editor)
 * [Add User Interactivity](#Add-User-Interactivity)
 * [ConstraintLayout using the Layout Editor](#ConstraintLayout-using-the-Layout-Editor)
+* [Data Binding Basic](#Data-Binding-Basic)
 
 # **Get Started**
 
@@ -174,3 +175,8 @@ Baseline constraints:
 
 *   A baseline constraint aligns a view's text baseline to the text baseline of another view that has text.
 *   Baseline constraints are helpful when views have different font sizes.
+
+# **Data Binding Basic**
+1.  In `MainActivity`, create a variable with an instance of the data class. For example: `private val myName: MyName = MyName("Aleks Haecky")`
+2.  In the binding object, set the variable to the variable you just created: `binding.myName = myName`
+3.  In the XML, set the content of the view to the variable that you defined in the `<data>` block. Use dot notation to access the data inside the data class. `android:text="@={myName.name}"`
