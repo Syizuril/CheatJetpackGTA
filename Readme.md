@@ -24,11 +24,11 @@ Android Kotlin Cheatsheet
 * [Activity and Fragment Lifecycles](#Activity-and-Fragment-Lifecycles)
 * [Complex Lifecycle](#Complex-Lifecycle)
 
-
 **Architecture components**
 * [ViewModel](#ViewModel)
 * [Livedata and Livedata Observer](#Livedata-and-Livedata-Observer)
 * [Data Binding with ViewModel and LiveData](#Data-Binding-with-ViewModel-and-LiveData)
+* [LiveData Transformation](#livedata-transformation)
 
 # **Get Started**
 
@@ -644,7 +644,7 @@ Doesn't contain any reference to the associated UI controller.
 
 </table>
 
-# *Livedata and Livedata Observer*
+# **Livedata and Livedata Observer**
 ## LiveData
 
 *   [`LiveData`](https://developer.android.com/topic/libraries/architecture/livedata) is an observable data holder class that is lifecycle-aware, one of the [Android Architecture Components](https://developer.android.com/topic/libraries/architecture).
@@ -673,7 +673,7 @@ Doesn't contain any reference to the associated UI controller.
 *   To make the `LiveData` observable, attach an observer object to the `LiveData` reference in the observers (such as activities and fragments) using the [`observe()`](https://developer.android.com/reference/android/arch/lifecycle/LiveData.html#observe(android.arch.lifecycle.LifecycleOwner,%0Aandroid.arch.lifecycle.Observer%3CT%3E)) method.
 *   This `LiveData` observer pattern can be used to communicate from the `ViewModel` to the UI controllers.
 
-# *Data Binding with ViewModel and LiveData*
+# **Data Binding with ViewModel and LiveData**
 *   The Data Binding Library works seamlessly with Android Architecture Components like `ViewModel` and `LiveData`.
 *   The layouts in your app can bind to the data in the Architecture Components, which already help you manage the UI controller's lifecycle and notify about changes in the data.
 
@@ -745,4 +745,51 @@ How to associate a `ViewModel` with a layout:
 
      android:text="@{@string/quote_format(gameViewModel.word)}"
 
-```</div>
+```
+
+# **LiveData Transformation**
+**Transforming LiveData**
+
+*   Sometimes you want to transform the results of `LiveData`. For example, you might want to format a `Date` string as "hours:mins:seconds," or return the number of items in a list rather than returning the list itself. To perform transformations on `LiveData`, use helper methods in the [`Transformations`](https://developer.android.com/reference/androidx/lifecycle/Transformations.html) class.
+*   The [`Transformations.map()`](https://developer.android.com/reference/androidx/lifecycle/Transformations.html#map(androidx.lifecycle.LiveData%3CX%3E,%20androidx.arch.core.util.Function%3CX,%20Y%3E)) method provides an easy way to perform data manipulations on the `LiveData` and return another `LiveData` object. The recommended practice is to put data-formatting logic that uses the `Transformations` class in the `ViewModel` along with the UI data.
+
+**Displaying the result of a transformation in a**
+
+**`TextView`**
+
+*   Make sure the source data is defined as `LiveData` in the `ViewModel`.
+*   Define a variable, for example `newResult`. Use `Transformation.map()` to perform the transformation and return the result to the variable.
+
+```kotlin
+
+    val newResult = Transformations.map(someLiveData) { input ->
+        // Do some transformation on the input live data
+        // and return the new value
+    }
+
+```
+
+*   Make sure the layout file that contains the `TextView` declares a `<data>` variable for the `ViewModel`.
+
+```kotlin
+
+    <data>
+        <variable
+            name="MyViewModel"
+            type="com.example.android.something.MyViewModel" />
+    </data>
+
+```
+
+*   In the layout file, set the `text` attribute of the `TextView` to the binding of the `newResult` of the `ViewModel`. For example:
+
+```kotlin
+
+    android:text="@{SomeViewModel.newResult}"
+</pre>
+
+```
+
+**Formatting dates**
+
+*   The [`DateUtils.formatElapsedTime()`](https://developer.android.com/reference/android/text/format/DateUtils.html#formatElapsedTime(long)) utility method takes a `long` number of milliseconds and formats the number to use a `MM:SS` string format.
