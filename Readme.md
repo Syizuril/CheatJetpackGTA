@@ -111,4 +111,12 @@ The `app` namespace:
 
 *   The `app` namespace in your XML layout file is for attributes that come from either your custom code or from libraries, not from the core Android framework.
 
+# **Additional Information**
+*   Official Android developer documentation is at [developer.android.com](http://developer.android.com/index.html).
+*   _Material Design_ is a conceptual design philosophy that outlines how apps should look and function on mobile devices. Material Design isn't just for Android apps. The Material Design guidelines are at [material.io](https://material.io/).
+*   Android Studio provides templates for common and recommended app and activity designs. These templates offer working code for common use cases.
+*   When you create a project, you can choose a template for your first activity.
+*   While you are developing your app, you can create activities and other app components from built-in templates.
+*   [Google Samples](https://github.com/googlesamples) contains code samples that you can study, copy, and incorporate into your projects.
+
 
