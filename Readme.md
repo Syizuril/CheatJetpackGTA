@@ -194,11 +194,9 @@ Steps for binding views to data:
 2.  Add a `<data>` block inside the `<layout>` tag.
 3.  Define a `<variable>` with a name, and a type that is the data class.
 
-<devsite-code no-copy="" data-copy-event-label="" dark-code="">
-
+```kotlin
     <data>   <variable       name="myName"       type="com.example.android.aboutme.MyName" /></data>
-
-</devsite-code>
+```
 
 1.  In `MainActivity`, create a variable with an instance of the data class. For example: `private val myName: MyName = MyName("Aleks Haecky")`
 2.  In the binding object, set the variable to the variable you just created: `binding.myName = myName`
