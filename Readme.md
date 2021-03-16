@@ -11,6 +11,7 @@ Android Kotlin Cheatsheet
 
 **Layout**
 * [Linear Layout using the Layout Editor](#Linear-Layout-using-the-Layout-Editor)
+* [Add User Interactivity](#Add-User-Interactivity)
 
 # **Get Started**
 
@@ -130,3 +131,18 @@ The `app` namespace:
 *   The [Layout Editor](https://developer.android.com/studio/write/layout-editor) is a visual design editor inside Android Studio. You can use the Layout Editor to build your app's layout by dragging UI elements into the layout.
 *   A [style](https://developer.android.com/guide/topics/ui/look-and-feel/themes) is a collection of attributes that specify the appearance for a view. For example, a style can specify font color, font size, background color, padding, and margin.
 *   You can extract and collect all the formatting of a view into a style. To give your app a consistent look, reuse the style for other views.
+
+# **Add User Interactivity**
+*   The [Layout Editor](https://developer.android.com/studio/write/layout-editor) tool in Android Studio is a visual design editor. You can use the Layout Editor to build your app's layout by dragging UI elements into your layout.
+*   [`EditText`](https://developer.android.com/reference/android/widget/EditText) is a UI element that lets the user enter and modify text.
+*   A [`Button`](https://developer.android.com/reference/android/widget/Button) is a UI element that the user can tap to perform an action. A button can consist of text, an icon, or both text and an icon.
+
+Click listeners
+
+*   You can make any `View` respond to being tapped by adding a click listener to it.
+*   The function that defines the click listener receives the `View` that is clicked.
+
+You can attach a click-listener function to a `View` in either of two ways:
+
+*   In the XML layout, add the [`android:onClick`](https://developer.android.com/reference/android/R.attr.html#onClick) attribute to the `<`_`View`_`>` element.
+*   Programmatically, use the [`setOnClickListener(View.OnClickListener)`](https://developer.android.com/reference/android/view/View.html#setOnClickListener(android.view.View.OnClickListener)) function in the corresponding `Activity`.
