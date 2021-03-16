@@ -253,7 +253,7 @@ The system's _Back button_ is usually at the bottom of the device. By default, t
 *   In the Navigation Editor, you can use the **Attributes** pane to change an action's **popUpTo** setting. This setting removes destinations from the back stack, which has the effect of determining where the Back button takes the user.
 *   The **popUpTo** setting appears as the `popUpTo` attribute in the `navigation.xml` file.
 
-![1f8e86b02d795270.png](/codelabs/kotlin-android-training-add-navigation/img/1f8e86b02d795270.png)
+![1f8e86b02d795270.png](https://developer.android.com/codelabs/kotlin-android-training-add-navigation/img/1f8e86b02d795270.png)
 
 *   Selecting the **popUpToInclusive** checkbox sets the `popUpToInclusive` attribute to `true`. All destinations up to and _including_ this destination are removed from the back stack.
 *   If an action's `popUpTo` attribute is set to the app's starting destination and `popUpToInclusive` is set to `true`, the Back button takes the user all the way out of the app.
@@ -268,23 +268,23 @@ To link the navigation controller to the app bar:
 
 1.  In `onCreate()`, call `setupActionBarWithNavController()` on the `NavigationUI` class, passing in the navigation controller:
 
-<devsite-code no-copy="" data-copy-event-label="" dark-code="">
+```kotlin
 
     val navController = this.findNavController(R.id.myNavHostFragment)NavigationUI.setupActionBarWithNavController(this,navController)
 
-</devsite-code>
+```
 
 1.  Override the `onSupportNavigateUp()` method to call `navigateUp()` in the navigation controller:
 
-<devsite-code no-copy="" data-copy-event-label="" dark-code="">
+```kotlin
 
     override fun onSupportNavigateUp(): Boolean {        val navController = this.findNavController(R.id.myNavHostFragment)        return navController.navigateUp()    }}
 
-</devsite-code>
+```
 
 ## The options menu
 
-The _options menu_ is a menu that the user accesses from the app bar by tapping the icon with the three vertical dots ![4cdd17fa43bfbe6.png](/codelabs/kotlin-android-training-add-navigation/img/4cdd17fa43bfbe6.png). To create an options menu with a menu item that displays a Fragment, make sure the Fragment has an ID. Then define the options menu and code the `onOptionsItemSelected()` handler for the menu items.
+The _options menu_ is a menu that the user accesses from the app bar by tapping the icon with the three vertical dots ![4cdd17fa43bfbe6.png](https://developer.android.com/codelabs/kotlin-android-training-add-navigation/img/4cdd17fa43bfbe6.png). To create an options menu with a menu item that displays a Fragment, make sure the Fragment has an ID. Then define the options menu and code the `onOptionsItemSelected()` handler for the menu items.
 
 1.  Make sure the Fragment has an ID:
 
@@ -301,26 +301,26 @@ The _options menu_ is a menu that the user accesses from the app bar by tapping 
 *   In the Fragment or Activity that displays the options menu, in `onCreateView()`, call `setHasOptionsMenu(true)` to enable the options menu.
 *   Implement `onCreateOptionsMenu()` to inflate the options menu:
 
-<devsite-code no-copy="" data-copy-event-label="" dark-code="">
+```kotlin
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {        super.onCreateOptionsMenu(menu, inflater)        inflater.inflate(R.menu.options_menu, menu)}
 
-</devsite-code>
+```
 
 *   Override the `onOptionsItemSelected()` method to take the appropriate action when the menu item is clicked. The following code displays the Fragment that has the same ID as the menu item. (This code only works if the menu item and the Fragment have identical ID values.)
 
-<devsite-code no-copy="" data-copy-event-label="" dark-code="">
+```kotlin
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {     return NavigationUI.            onNavDestinationSelected(item,requireView().findNavController())            || super.onOptionsItemSelected(item)}
 
-</devsite-code>
+```
 
 ## The navigation drawer
 
 The _navigation drawer_ is a panel that slides out from the edge of the screen. There are two ways for the user to open the navigation drawer:
 
 *   Swipe from the starting edge (usually the left) on any screen.
-*   Use the drawer button (three lines) ![7277f85db3a1ad13.png](/codelabs/kotlin-android-training-add-navigation/img/7277f85db3a1ad13.png) on the app bar at the top of the app.
+*   Use the drawer button (three lines) ![7277f85db3a1ad13.png](https://developer.android.com/codelabs/kotlin-android-training-add-navigation/img/7277f85db3a1ad13.png) on the app bar at the top of the app.
 
 To add a navigation drawer to your app:
 
@@ -337,11 +337,11 @@ These steps are explained in more detail below.
 
 *   The navigation drawer is part of the Material Components for Android library. Add the Material library to the `build.gradle (app)` file:
 
-<devsite-code no-copy="" data-copy-event-label="" dark-code="">
+```kotlin
 
     dependencies {    ...    implementation "com.google.android.material:material:$supportlibVersion"    ...}
 
-</devsite-code>
+```
 
 1.  Give each destination Fragment an ID:
 
@@ -361,24 +361,24 @@ These steps are explained in more detail below.
 
 *   Open the Activity that creates the navigation controller. (The main Activity is typically the one you want here.) In `onCreate()`, use `NavigationUI.setupWithNavController()`to connect the navigation drawer with the navigation controller:
 
-<devsite-code no-copy="" data-copy-event-label="" dark-code="">
+```kotlin
 
     val binding = DataBindingUtil.setContentView<ActivityMainBinding>(       this, R.layout.activity_main)NavigationUI.setupWithNavController(binding.navView, navController)
 
-</devsite-code>
+```
 
 1.  Set up the drawer button in the app bar:
 
 *   In `onCreate()` in the Activity that creates the navigation controller (which is typically the main Activity), pass the drawer layout as the third parameter to `NavigationUI.setupActionBarWithNavController`:
 
-<devsite-code no-copy="" data-copy-event-label="" dark-code="">
+```kotlin
 
     val binding = DataBindingUtil.setContentView<ActivityMainBinding>(    this, R.layout.activity_main)NavigationUI.setupActionBarWithNavController(    this, navController, binding.drawerLayout)
 
-</devsite-code>
+```
 
 *   To make the Up button work with the drawer button, edit `onSupportNavigateUp()` to return `NavigationUI.navigateUp()`. Pass the navigation controller and the drawer layout to `navigateUp()`.
 
-<devsite-code no-copy="" data-copy-event-label="" dark-code="">
+```kotlin
 
     override fun onSupportNavigateUp(): Boolean {   val navController = this.findNavController(R.id.myNavHostFragment)   return NavigationUI.navigateUp(navController, drawerLayout)}
