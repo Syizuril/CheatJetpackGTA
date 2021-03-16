@@ -270,7 +270,8 @@ To link the navigation controller to the app bar:
 
 ```kotlin
 
-    val navController = this.findNavController(R.id.myNavHostFragment)NavigationUI.setupActionBarWithNavController(this,navController)
+    val navController = this.findNavController(R.id.myNavHostFragment)
+    NavigationUI.setupActionBarWithNavController(this,navController)
 
 ```
 
@@ -278,7 +279,11 @@ To link the navigation controller to the app bar:
 
 ```kotlin
 
-    override fun onSupportNavigateUp(): Boolean {        val navController = this.findNavController(R.id.myNavHostFragment)        return navController.navigateUp()    }}
+    override fun onSupportNavigateUp(): Boolean {
+        val navController = this.findNavController(R.id.myNavHostFragment)
+        return navController.navigateUp()    
+        }
+    }
 
 ```
 
@@ -303,7 +308,10 @@ The _options menu_ is a menu that the user accesses from the app bar by tapping 
 
 ```kotlin
 
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {        super.onCreateOptionsMenu(menu, inflater)        inflater.inflate(R.menu.options_menu, menu)}
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.options_menu, menu)
+    }
 
 ```
 
@@ -311,7 +319,9 @@ The _options menu_ is a menu that the user accesses from the app bar by tapping 
 
 ```kotlin
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {     return NavigationUI.            onNavDestinationSelected(item,requireView().findNavController())            || super.onOptionsItemSelected(item)}
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return NavigationUI.onNavDestinationSelected(item,requireView().findNavController()) || super.onOptionsItemSelected(item)
+    }
 
 ```
 
@@ -339,7 +349,11 @@ These steps are explained in more detail below.
 
 ```kotlin
 
-    dependencies {    ...    implementation "com.google.android.material:material:$supportlibVersion"    ...}
+    dependencies {   
+        ...
+        implementation "com.google.android.material:material:$supportlibVersion"
+        ...
+    }
 
 ```
 
@@ -363,7 +377,8 @@ These steps are explained in more detail below.
 
 ```kotlin
 
-    val binding = DataBindingUtil.setContentView<ActivityMainBinding>(       this, R.layout.activity_main)NavigationUI.setupWithNavController(binding.navView, navController)
+    val binding = DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
+    NavigationUI.setupWithNavController(binding.navView, navController)
 
 ```
 
@@ -373,7 +388,8 @@ These steps are explained in more detail below.
 
 ```kotlin
 
-    val binding = DataBindingUtil.setContentView<ActivityMainBinding>(    this, R.layout.activity_main)NavigationUI.setupActionBarWithNavController(    this, navController, binding.drawerLayout)
+    val binding = DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
+    NavigationUI.setupActionBarWithNavController(this, navController, binding.drawerLayout)
 
 ```
 
@@ -381,4 +397,9 @@ These steps are explained in more detail below.
 
 ```kotlin
 
-    override fun onSupportNavigateUp(): Boolean {   val navController = this.findNavController(R.id.myNavHostFragment)   return NavigationUI.navigateUp(navController, drawerLayout)}
+    override fun onSupportNavigateUp(): Boolean {
+        val navController = this.findNavController(R.id.myNavHostFragment)
+        return NavigationUI.navigateUp(navController, drawerLayout)
+    }
+
+```
