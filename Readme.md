@@ -28,6 +28,7 @@ Android Kotlin Cheatsheet
 **Architecture components**
 * [ViewModel](#ViewModel)
 * [Livedata and Livedata Observer](#Livedata-and-Livedata-Observer)
+* [Data Binding with ViewModel and LiveData](#Data-Binding-with-ViewModel-and-LiveData)
 
 # **Get Started**
 
@@ -671,3 +672,77 @@ Doesn't contain any reference to the associated UI controller.
 *   `LiveData` follows an observer pattern. The "observable" is the `LiveData` object, and the observers are the methods in the UI controllers, like fragments. Whenever the data wrapped inside `LiveData` changes, the observer methods in the UI controllers are notified.
 *   To make the `LiveData` observable, attach an observer object to the `LiveData` reference in the observers (such as activities and fragments) using the [`observe()`](https://developer.android.com/reference/android/arch/lifecycle/LiveData.html#observe(android.arch.lifecycle.LifecycleOwner,%0Aandroid.arch.lifecycle.Observer%3CT%3E)) method.
 *   This `LiveData` observer pattern can be used to communicate from the `ViewModel` to the UI controllers.
+
+# *Data Binding with ViewModel and LiveData*
+*   The Data Binding Library works seamlessly with Android Architecture Components like `ViewModel` and `LiveData`.
+*   The layouts in your app can bind to the data in the Architecture Components, which already help you manage the UI controller's lifecycle and notify about changes in the data.
+
+## ViewModel data binding
+
+*   You can associate a [`ViewModel`](https://developer.android.com/reference/android/arch/lifecycle/ViewModel) with a layout by using data binding.
+*   `ViewModel` objects hold the UI data. By passing `ViewModel` objects into the data binding, you can automate some of the communication between the views and the `ViewModel` objects.
+
+How to associate a `ViewModel` with a layout:
+
+*   In the layout file, add a data-binding variable of the type `ViewModel`.
+
+```kotlin
+
+    <data>
+        <variable
+            name="gameViewModel"
+            type="com.example.android.guesstheword.screens.game.GameViewModel" />
+    </data>
+
+```
+
+*   In the `GameFragment` file, pass the `GameViewModel` into the data binding.  
+
+```kotlin
+
+    binding.gameViewModel = viewModel
+
+```
+
+### Listener bindings
+
+*   [_Listener bindings_](https://developer.android.com/topic/libraries/data-binding/expressions#listener_bindings) are binding expressions in the layout that run when click events such as `onClick()` are triggered.
+*   Listener bindings are written as lambda expressions.
+*   Using listener bindings, you replace the click listeners in the UI controllers with listener bindings in the layout file.
+*   Data binding creates a listener and sets the listener on the view.
+
+```kotlin
+
+     android:onClick="@{() -> gameViewModel.onSkip()}"
+
+```
+
+## Adding LiveData to data binding
+
+*   [`LiveData`](https://developer.android.com/reference/android/arch/lifecycle/LiveData) objects can be used as a data-binding source to automatically notify the UI about changes in the data.
+*   You can bind the view directly to the `LiveData` object in the `ViewModel`. When the `LiveData` in the `ViewModel` changes, the views in the layout can be automatically updated, without the observer methods in the UI controllers.
+
+```kotlin
+
+    android:text="@{gameViewModel.word}"
+
+```
+
+*   To make the `LiveData` data binding work, set the current activity (the UI controller) as the lifecycle owner of the `binding` variable in the UI controller.
+
+```kotlin
+
+    binding.lifecycleOwner = this
+
+```
+
+## String formatting with data binding
+
+*   Using data binding, you can format a string resource with placeholders like `%s` for strings and `%d` for integers.
+*   To update the `text` attribute of the view, pass in the `LiveData` object as an argument to the formatting string.
+
+```kotlin
+
+     android:text="@{@string/quote_format(gameViewModel.word)}"
+
+```</div>
