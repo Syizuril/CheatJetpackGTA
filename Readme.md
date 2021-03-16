@@ -3,8 +3,9 @@ Android Kotlin Cheatsheet
 
 **Table of Content**
 **Fundamental**
-[Get Started](#get-started)
-[Anatomy of Basic Android Project](#Anatomy-of-Basic-Android-Project)
+* [Get Started](#get-started)
+* [Anatomy of Basic Android Project](#Anatomy-of-Basic-Android-Project)
+
 
 # **Get Started**
 
