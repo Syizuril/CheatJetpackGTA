@@ -18,6 +18,14 @@ Android Kotlin Cheatsheet
 **Navigation**
 * [Fragment](#fragment)
 * [Define Navigation Paths](#Define-Navigation-Paths)
+* [Start an external Activity](#Start-an-external-Activity)
+
+**Activity and Fragment Lifecycle**
+* [Activity and Fragment Lifecycles](#Activity-and-Fragment-Lifecycles)
+* [Complex Lifecycle](#Complex-Lifecycle)
+
+
+**Architecture components**
 
 # **Get Started**
 
@@ -216,6 +224,7 @@ Steps for binding views to data:
 *   You can add or remove a Fragment while the activity is running.
 
 # **Define Navigation Paths**
+
 ## Navigation components
 
 To use the Android _navigation library_, you need to do some setup:
@@ -403,3 +412,231 @@ These steps are explained in more detail below.
     }
 
 ```
+
+# **Start an external Activity**
+Safe Args:
+
+*   To help catch errors caused by missing keys or mismatched types when you pass data from one Fragment to another, use a Gradle plugin called [_Safe Args_](https://developer.android.com/topic/libraries/architecture/navigation/navigation-pass-data#Safe-args).
+*   For each Fragment in your app, the Safe Args plugin generates a corresponding `NavDirection` class. You add the `NavDirection` class to the Fragment code, then use the class to pass arguments between the Fragment and other fragments.
+*   The `NavDirection` classes represent navigation from all the app's actions.
+
+Implicit intents:
+
+*   An [_implicit intent_](https://developer.android.com/training/basics/intents/sending) declares an action that your app wants some other app (such as a camera app or email app) to perform on its behalf.
+*   If several Android apps could handle an implicit intent, Android shows the user a chooser. For example, when the user taps the **share** icon in the AndroidTrivia app, the user can select which app they want to use to share their game results.
+*   To build an intent, you declare an action to perform, for example [`ACTION_SEND`](https://developer.android.com/reference/android/content/Intent.html#ACTION_SEND).
+*   Several [`Intent()`](https://developer.android.com/reference/android/content/Intent.html#public-constructors_1) constructors are available to help you build intents.
+
+Sharing functionality:
+
+*   In the case of sharing your success with your friends, the `Intent` action would be `Intent.ACTION_SEND.`
+*   To add an options menu to a Fragment, set the [`setHasOptionsMenu()`](https://developer.android.com/reference/android/support/v4/app/Fragment#sethasoptionsmenu) method to `true` in the Fragment code.
+*   In the Fragment code, override the `onCreateOptionsMenu()` method to inflate the menu.
+*   Override the `onOptionsItemSelected()` to use `startActivity()` to send the `Intent` to other apps that can handle it.
+
+When the user taps the menu item, the intent is fired, and the user sees a chooser for the `SEND` action.
+
+# **Activity and Fragment Lifecycles**
+## **Activity lifecycle**
+
+*   The _activity lifecycle_ is a set of states through which an activity migrates. The activity lifecycle begins when the activity is first created and ends when the activity is destroyed.
+*   As the user navigates between activities and inside and outside of your app, each activity moves between states in the activity lifecycle.
+*   Each state in the activity lifecycle has a corresponding callback method you can override in your `Activity` class. There are seven lifecycle methods: [`onCreate()`](https://developer.android.com/reference/android/app/Activity.html#onCreate(android.os.Bundle))[`onStart()`](https://developer.android.com/reference/android/app/Activity.html#onStart())[`onPause()`](https://developer.android.com/reference/android/app/Activity.html#onPause())[`onRestart()`](https://developer.android.com/reference/android/app/Activity.html#onRestart())[`onResume()`](https://developer.android.com/reference/android/app/Activity.html#onResume())[`onStop()`](https://developer.android.com/reference/android/app/Activity.html#onStop())[`onDestroy()`](https://developer.android.com/reference/android/app/Activity.html#onDestroy())
+*   To add behavior that occurs when your activity transitions into a lifecycle state, override that state's callback method.
+*   To add skeleton override methods to your classes in Android Studio, select **Code > Override Methods** or press `Control+o`.
+
+## **Logging with Log**
+
+*   The Android logging API, and specifically the `Log` class, enables you to write short messages that are displayed in the Logcat within Android Studio.
+*   Use `Log.i()` to write an informational message. This method takes two arguments: the log _tag_, typically the name of the class, and the log _message_, a short string.
+*   Use the **Logcat** pane in Android Studio to view the system logs, including the messages you write.
+
+## **Logging with Timber**
+
+[`Timber`](https://github.com/JakeWharton/timber) is a logging library with several advantages over the Android logging API. In particular, the `Timber` library:
+
+*   Generates the log tag for you based on the class name.
+*   Helps avoid showing logs in a release version of your Android app.
+*   Allows for integration with crash reporting libraries.
+
+To use `Timber`, add its dependency to your Gradle file and extend the [`Application`](https://developer.android.com/reference/android/app/Application) class to initialize it:
+
+*   `Application` is a base class that contains global application state for your entire app. There is a default `Application` class that is used by Android if you don't specify one. You can create your own `Application` subclass to initialize app-wide libraries such as `Timber`.
+*   Add your custom `Application` class to your app by adding the `android:name` attribute to the `<application>` element in the Android manifest. Do not forget to do this!
+*   Use `Timber.i()` to write log messages with `Timber`. This method only takes one argument: the message to write. The log tag (the name of the class) is added for you automatically.
+
+# **Complex Lifecycle**
+## **Lifecycle tips**
+
+*   If you set up or start something in a lifecycle callback, stop or remove that thing in the corresponding callback. By stopping the thing, you make sure it doesn't keep running when it's no longer needed. For example, if you set up a timer in `onStart()`, you need to pause or stop the timer in `onStop()`.
+*   Use `onCreate()` only to initialize the parts of your app that run once, when the app first starts. Use `onStart()` to start the parts of your app that run both when the app starts, and each time the app returns to the foreground.
+
+## **Lifecycle library**
+
+*   Use the Android lifecycle library to shift lifecycle control from the activity or fragment to the actual component that needs to be lifecycle-aware.
+*   Lifecycle _owners_ are components that have (and thus "own") lifecycles, including `Activity` and `Fragment`. Lifecycle owners implement the `LifecycleOwner` interface.
+*   Lifecycle _observers_ pay attention to the current lifecycle state and perform tasks when the lifecycle changes. Lifecycle observers implement the `LifecycleObserver` interface.
+*   `Lifecycle` objects contain the actual lifecycle states, and they trigger events when the lifecycle changes.
+
+To create a lifecycle-aware class:
+
+*   Implement the `LifecycleObserver` interface in classes that need to be lifecycle-aware.
+*   Initialize a lifecycle observer class with the lifecycle object from the activity or fragment.
+*   In the lifecycle observer class, annotate lifecycle-aware methods with the lifecycle state change they are interested in.
+
+For example, the `@OnLifecycleEvent(Lifecycle.Event.ON_START)`annotation indicates that the method is watching the `onStart` lifecycle event.
+
+## **Process shutdowns and saving activity state**
+
+*   Android regulates apps running in the background so that the foreground app can run without problems. This regulation includes limiting the amount of processing that apps in the background can do, and sometimes even shutting down your entire app process.
+*   The user cannot tell if the system has shut down an app in the background. The app still appears in the recents screen and should restart in the same state in which the user left it.
+*   The Android Debug Bridge (`adb`) is a command-line tool that lets you send instructions to emulators and devices attached to your computer. You can use `adb` to simulate a process shutdown in your app.
+*   When Android shuts down your app process, the `onDestroy()` lifecycle method is not called. The app just stops.
+
+## **Preserving activity and fragment state**
+
+*   When your app goes into the background, just after `onStop()` is called, app data is saved to a bundle. Some app data, such as the contents of an `EditText`, is automatically saved for you.
+*   The bundle is an instance of `Bundle`, which is a collection of keys and values. The keys are always strings.
+*   Use the `onSaveInstanceState()` callback to save other data to the bundle that you want to retain, even if the app was automatically shut down. To put data into the bundle, use the bundle methods that start with `put`, such as `putInt()`.
+*   You can get data back out of the bundle in the `onRestoreInstanceState()` method, or more commonly in `onCreate()`. The `onCreate()` method has a `savedInstanceState` parameter that holds the bundle.
+*   If the `savedInstanceState` variable contains `null`, the activity was started without a state bundle and there is no state data to retrieve.
+*   To retrieve data from the bundle with a key, use the `Bundle` methods that start with `get`, such as `getInt()`.
+
+## **Configuration changes**
+
+*   A _configuration change_ happens when the state of the device changes so radically that the easiest way for the system to resolve the change is to shut down and rebuild the activity.
+*   The most common example of a configuration change is when the user rotates the device from portrait to landscape mode, or from landscape to portrait mode. A configuration change can also occur when the device language changes or a hardware keyboard is plugged in.
+*   When a configuration change occurs, Android invokes all the activity lifecycle's shutdown callbacks. Then Android restarts the activity from scratch, running all the lifecycle startup callbacks.
+*   When Android shuts down an app because of a configuration change, it restarts the activity with the state bundle that is available to `onCreate()`.
+*   As with process shutdown, save your app's state to the bundle in `onSaveInstanceState()`.
+
+# **ViewModel**
+*   The Android [app architecture](https://developer.android.com/jetpack/docs/guide) guidelines recommend separating classes that have different responsibilities.
+*   A _UI controller_ is UI-based class like [`Activity`](https://developer.android.com/reference/android/app/Activity.html) or [`Fragment`](https://developer.android.com/reference/android/app/Fragment.html). UI controllers should only contain logic that handles UI and operating system interactions; they shouldn't contain data to be displayed in the UI. Put that data in a `ViewModel`.
+*   The [`ViewModel`](https://developer.android.com/reference/android/arch/lifecycle/ViewModel.html) class stores and manages UI-related data. The `ViewModel` class allows data to survive configuration changes such as screen rotations.
+*   `ViewModel` is one of the recommended [Android Architecture Components](https://developer.android.com/jetpack/#architecture-components).
+*   `ViewModelProvider.Factory` is an interface you can use to create a `ViewModel` object.
+
+The table below compares UI controllers with the `ViewModel` instances that hold data for them:
+
+<div class="devsite-table-wrapper">
+
+<table>
+
+<tbody>
+
+<tr>
+
+<td colspan="1" rowspan="1">
+
+**UI controller**
+
+</td>
+
+<td colspan="1" rowspan="1">
+
+**ViewModel**
+
+</td>
+
+</tr>
+
+<tr>
+
+<td colspan="1" rowspan="1">
+
+An example of a UI controller is the `ScoreFragment` that you created in this codelab.
+
+</td>
+
+<td colspan="1" rowspan="1">
+
+An example of a `ViewModel` is the `ScoreViewModel` that you created in this codelab.
+
+</td>
+
+</tr>
+
+<tr>
+
+<td colspan="1" rowspan="1">
+
+Doesn't contain any data to be displayed in the UI.
+
+</td>
+
+<td colspan="1" rowspan="1">
+
+Contains data that the UI controller displays in the UI.
+
+</td>
+
+</tr>
+
+<tr>
+
+<td colspan="1" rowspan="1">
+
+Contains code for displaying data, and user-event code such as click listeners.
+
+</td>
+
+<td colspan="1" rowspan="1">
+
+Contains code for data processing.
+
+</td>
+
+</tr>
+
+<tr>
+
+<td colspan="1" rowspan="1">
+
+Destroyed and re-created during every configuration change.
+
+</td>
+
+<td colspan="1" rowspan="1">
+
+Destroyed only when the associated UI controller goes away permanently—for an activity, when the activity finishes, or for a fragment, when the fragment is detached.
+
+</td>
+
+</tr>
+
+<tr>
+
+<td colspan="1" rowspan="1">
+
+Contains views.
+
+</td>
+
+<td colspan="1" rowspan="1">
+
+Should never contain references to activities, fragments, or views, because they don't survive configuration changes, but the `ViewModel` does.
+
+</td>
+
+</tr>
+
+<tr>
+
+<td colspan="1" rowspan="1">
+
+Contains a reference to the associated `ViewModel`.
+
+</td>
+
+<td colspan="1" rowspan="1">
+
+Doesn't contain any reference to the associated UI controller.
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
