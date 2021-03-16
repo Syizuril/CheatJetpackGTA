@@ -15,6 +15,9 @@ Android Kotlin Cheatsheet
 * [ConstraintLayout using the Layout Editor](#ConstraintLayout-using-the-Layout-Editor)
 * [Data Binding Basic](#Data-Binding-Basic)
 
+**Navigation**
+* [Fragment](#fragment)
+
 # **Get Started**
 
 * To install Android Studio, go to [Android Studio](https://developer.android.com/studio) and follow the instructions to download and install it.
@@ -203,3 +206,10 @@ Steps for binding views to data:
 1.  In `MainActivity`, create a variable with an instance of the data class. For example: `private val myName: MyName = MyName("Aleks Haecky")`
 2.  In the binding object, set the variable to the variable you just created: `binding.myName = myName`
 3.  In the XML, set the content of the view to the variable that you defined in the `<data>` block. Use dot notation to access the data inside the data class. `android:text="@={myName.name}"`
+
+# **Fragment**
+*   A _Fragment_ is a modular section of an activity.
+*   A Fragment has its own lifecycle and receives its own input events.
+*   Use the `<fragment>` tag to define the layout for the Fragment in the XML layout file.
+*   Inflate the layout for a Fragment in `onCreateView()`.
+*   You can add or remove a Fragment while the activity is running.
