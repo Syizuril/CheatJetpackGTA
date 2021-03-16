@@ -26,6 +26,8 @@ Android Kotlin Cheatsheet
 
 
 **Architecture components**
+* [ViewModel](#ViewModel)
+* [Livedata and Livedata Observer](#Livedata-and-Livedata-Observer)
 
 # **Get Started**
 
@@ -640,3 +642,32 @@ Doesn't contain any reference to the associated UI controller.
 </tbody>
 
 </table>
+
+# *Livedata and Livedata Observer*
+## LiveData
+
+*   [`LiveData`](https://developer.android.com/topic/libraries/architecture/livedata) is an observable data holder class that is lifecycle-aware, one of the [Android Architecture Components](https://developer.android.com/topic/libraries/architecture).
+*   You can use `LiveData` to enable your UI to update automatically when the data updates.
+*   `LiveData` is observable, which means that an observer like an activity or an fragment can be notified when the data held by the `LiveData` object changes.
+*   `LiveData` holds data; it is a wrapper that can be used with any data.
+*   `LiveData` is lifecycle-aware, meaning that it only updates observers that are in an active lifecycle state such as [`STARTED`](https://developer.android.com/reference/android/arch/lifecycle/Lifecycle.State.html#STARTED) or [`RESUMED`](https://developer.android.com/reference/android/arch/lifecycle/Lifecycle.State.html#RESUMED).
+
+### To add LiveData
+
+*   Change the type of the data variables in `ViewModel` to `LiveData` or [`MutableLiveData`](https://developer.android.com/reference/android/arch/lifecycle/MutableLiveData).
+
+`MutableLiveData` is a `LiveData` object whose value can be changed. `MutableLiveData` is a generic class, so you need to specify the type of data that it holds.
+
+*   To change the value of the data held by the `LiveData`, use the `setValue()` method on the `LiveData` variable.
+
+### To encapsulate LiveData
+
+*   The `LiveData` inside the `ViewModel` should be editable. Outside the `ViewModel`, the `LiveData` should be readable. This can be implemented using a Kotlin [backing property](https://kotlinlang.org/docs/reference/properties.html#backing-properties).
+*   A Kotlin backing property allows you to return something from a getter other than the exact object.
+*   To encapsulate the `LiveData`, use `private` `MutableLiveData` inside the `ViewModel` and return a `LiveData` backing property outside the `ViewModel`.
+
+### Observable LiveData
+
+*   `LiveData` follows an observer pattern. The "observable" is the `LiveData` object, and the observers are the methods in the UI controllers, like fragments. Whenever the data wrapped inside `LiveData` changes, the observer methods in the UI controllers are notified.
+*   To make the `LiveData` observable, attach an observer object to the `LiveData` reference in the observers (such as activities and fragments) using the [`observe()`](https://developer.android.com/reference/android/arch/lifecycle/LiveData.html#observe(android.arch.lifecycle.LifecycleOwner,%0Aandroid.arch.lifecycle.Observer%3CT%3E)) method.
+*   This `LiveData` observer pattern can be used to communicate from the `ViewModel` to the UI controllers.
