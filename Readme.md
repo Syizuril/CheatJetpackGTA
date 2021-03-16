@@ -6,7 +6,8 @@ Android Kotlin Cheatsheet
 **Fundamental**
 * [Get Started](#get-started)
 * [Anatomy of Basic Android Project](#Anatomy-of-Basic-Android-Project)
-* [Image Resource and Compability](Image-Resource-and-Compability)
+* [Image Resource and Compability](#Image-Resource-and-Compability)
+* [Additional Information](#additional-information)
 
 
 # **Get Started**
