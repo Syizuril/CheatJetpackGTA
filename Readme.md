@@ -786,7 +786,6 @@ How to associate a `ViewModel` with a layout:
 ```kotlin
 
     android:text="@{SomeViewModel.newResult}"
-</pre>
 
 ```
 
