@@ -177,6 +177,29 @@ Baseline constraints:
 *   Baseline constraints are helpful when views have different font sizes.
 
 # **Data Binding Basic**
+Steps to use data binding to replace calls to `findViewById()`:
+
+1.  Enable data binding in the android section of the `build.gradle` file: `buildFeatures {``dataBinding true`
+
+`}`
+
+1.  Use `<layout>` as the root view in your XML layout.
+2.  Define a binding variable: `private lateinit var binding: ActivityMainBinding`
+3.  Create a binding object in `MainActivity`, replacing `setContentView`: `binding = DataBindingUtil.setContentView(this, R.layout.activity_main)`
+4.  Replace calls to `findViewById()` with references to the view in the binding object. For example: `findViewById<Button>(R.id.done_button)` ⇒ `binding.doneButton` (In the example, the name of the view is generated camel case from the view's `id` in the XML.)
+
+Steps for binding views to data:
+
+1.  Create a data class for your data.
+2.  Add a `<data>` block inside the `<layout>` tag.
+3.  Define a `<variable>` with a name, and a type that is the data class.
+
+<devsite-code no-copy="" data-copy-event-label="" dark-code="">
+
+    <data>   <variable       name="myName"       type="com.example.android.aboutme.MyName" /></data>
+
+</devsite-code>
+
 1.  In `MainActivity`, create a variable with an instance of the data class. For example: `private val myName: MyName = MyName("Aleks Haecky")`
 2.  In the binding object, set the variable to the variable you just created: `binding.myName = myName`
 3.  In the XML, set the content of the view to the variable that you defined in the `<data>` block. Use dot notation to access the data inside the data class. `android:text="@={myName.name}"`
