@@ -42,6 +42,9 @@ Android Kotlin Cheatsheet
 * [Interacting with RecyclerView Items](#interacting-with-recyclerview-items)
 * [Header in RecyclerView](#Header-in-RecyclerView)
 
+* [Connecting to the internet](#Getting-Data-From-The-Internet)
+
+
 # **Get Started**
 
 * To install Android Studio, go to [Android Studio](https://developer.android.com/studio) and follow the instructions to download and install it.
@@ -1006,3 +1009,25 @@ These are the major steps for adding a header:
 *   Update `SleepNightDiffCallback` to work with the `DataItem` class.
 *   Create a `addHeaderAndSubmitList()` function that uses coroutines to add the header to the dataset and then calls `submitList()`.
 *   Implement `GridLayoutManager.SpanSizeLookup()` to make only the header three spans wide.
+
+# **Getting Data From The Internet**
+
+## **REST web services**
+
+*   A _web service_ is software-based functionality offered over the internet that enables your app to make requests and get data back.
+*   Common web services use a [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) architecture. Web services that offer REST architecture are known as _RESTful_ services. RESTful web services are built using standard web components and protocols.
+*   You make a request to a REST web service in a standardized way, via URIs.
+*   To use a web service, an app must establish a network connection and communicate with the service. Then the app must receive and parse response data into a format the app can use.
+*   The [Retrofit](https://square.github.io/retrofit/) library is a client library that enables your app to make requests to a REST web service.
+*   Use converters to tell Retrofit what to do with data it sends to the web service and gets back from the web service. For example, the `ScalarsConverter` converter treats the web service data as a `String` or other primitive.
+*   To enable your app to make connections to the internet, add the `"android.permission.INTERNET"` permission in the Android manifest.
+
+## **JSON parsing**
+
+*   The response from a web service is often formatted in [JSON](https://www.json.org/), a common interchange format for representing structured data.
+*   A JSON object is a collection of key-value pairs. This collection is sometimes called a _dictionary_, a _hash map_, or an _associative array_.
+*   A collection of JSON objects is a JSON array. You get a JSON array as a response from a web service.
+*   The keys in a key-value pair are surrounded by quotes. The values can be numbers or strings. Strings are also surrounded by quotes.
+*   The [Moshi](https://github.com/square/moshi) library is an Android JSON parser that converts a JSON string into Kotlin objects. Retrofit has a converter that works with Moshi.
+*   Moshi matches the keys in a JSON response with properties in a data object that have the same name.
+*   To use a different property name for a key, annotate that property with the `@Json` annotation and the JSON key name.
