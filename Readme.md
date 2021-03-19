@@ -39,6 +39,7 @@ Android Kotlin Cheatsheet
 * [RecyclerView Fundamental](#RecyclerView-Fundamentals)
 * [DiffUtil and data binding with RecyclerView](#DiffUtil-and-data-binding-with-RecyclerView)
 * [GridLayout with RecyclerView](#gridlayout-with-recyclerview)
+* [Interacting with RecyclerView Items](#interacting-with-recyclerview-items)
 
 # **Get Started**
 
@@ -931,3 +932,55 @@ Binding adapters
 *   You can customize how many spans an item takes up, creating more interesting grids without the need for a custom layout manager.
 *   Create an item layout for one item in the grid, and the layout manager takes care of arranging the items.
 *   You can set the `LayoutManager` for the `RecyclerView` either in the XML layout file that contains the `<RecyclerView>` element, or you can set it programmatically.
+
+# **Interacting with RecyclerView items**
+
+To make items in a `RecyclerView` respond to clicks, attach click listeners to list items in the `ViewHolder`, and handle clicks in the `ViewModel`.
+
+To make items in a `RecyclerView` respond to clicks, you need to do the following:
+
+*   Create a listener class that takes a lambda and assigns it to an `onClick()` function.
+
+```kotlin
+
+    class SleepNightListener(val clickListener: (sleepId: Long) -> Unit) {
+        fun onClick(night: SleepNight) = clickListener(night.nightId)
+    }
+
+```
+
+*   Set the click listener on the view.
+
+```kotlin
+
+    android:onClick="@{() -> clickListener.onClick(sleep)}"
+
+```
+
+*   Pass the click listener to the adapter constructor, into the view holder, and add it to the binding object.
+
+```kotlin
+
+    class SleepNightAdapter(val clickListener: SleepNightListener): ListAdapter<DataItem, RecyclerView.ViewHolder>(SleepNightDiffCallback()
+
+``````kotlin
+
+    holder.bind(getItem(position)!!, clickListener)
+
+``````kotlin
+
+    binding.clickListener = clickListener
+
+```
+
+*   In the fragment that shows the recycler view, where you create the adapter, define a click listener by passing a lambda to the adapter.
+
+```kotlin
+
+    val adapter = SleepNightAdapter(SleepNightListener { nightId ->
+        sleepTrackerViewModel.onSleepNightClicked(nightId)
+    })
+
+```
+
+*   Implement the click handler in the view model. For clicks on list items, this commonly triggers navigation to a detail fragment.
