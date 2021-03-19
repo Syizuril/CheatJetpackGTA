@@ -40,6 +40,7 @@ Android Kotlin Cheatsheet
 * [DiffUtil and data binding with RecyclerView](#DiffUtil-and-data-binding-with-RecyclerView)
 * [GridLayout with RecyclerView](#gridlayout-with-recyclerview)
 * [Interacting with RecyclerView Items](#interacting-with-recyclerview-items)
+* [Header in RecyclerView](#Header-in-RecyclerView)
 
 # **Get Started**
 
@@ -988,3 +989,20 @@ To make items in a `RecyclerView` respond to clicks, you need to do the followin
 ```
 
 *   Implement the click handler in the view model. For clicks on list items, this commonly triggers navigation to a detail fragment.
+
+# **Header in RecyclerView**
+
+*   A _header_ is generally an item that spans the width of a list and acts as a title or separator. A list can have a single header to describe the item content, or multiple headers to group items and separate items from each other.
+*   A `RecyclerView` can use multiple view holders to accommodate a heterogeneous set of items; for example, headers and list items.
+*   One way to add headers is to modify your adapter to use a different `ViewHolder` by checking indexes where your header needs to be shown. The `Adapter` is responsible for keeping track of the header.
+*   Another way to add headers is to modify the backing dataset (the list) for your data grid, which is what you did in this codelab.
+
+These are the major steps for adding a header:
+
+*   Abstract the data in your list by creating a `DataItem` that can hold a header or data.
+*   Create a view holder with a layout for the header in the adapter.
+*   Update the adapter and its methods to use any kind of `RecyclerView.ViewHolder`.
+*   In `onCreateViewHolder()`, return the correct type of view holder for the data item.
+*   Update `SleepNightDiffCallback` to work with the `DataItem` class.
+*   Create a `addHeaderAndSubmitList()` function that uses coroutines to add the header to the dataset and then calls `submitList()`.
+*   Implement `GridLayoutManager.SpanSizeLookup()` to make only the header three spans wide.
