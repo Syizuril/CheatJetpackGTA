@@ -963,11 +963,15 @@ To make items in a `RecyclerView` respond to clicks, you need to do the followin
 
     class SleepNightAdapter(val clickListener: SleepNightListener): ListAdapter<DataItem, RecyclerView.ViewHolder>(SleepNightDiffCallback()
 
-``````kotlin
+```
+
+```kotlin
 
     holder.bind(getItem(position)!!, clickListener)
 
-``````kotlin
+```
+
+```kotlin
 
     binding.clickListener = clickListener
 
