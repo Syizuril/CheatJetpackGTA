@@ -38,6 +38,7 @@ Android Kotlin Cheatsheet
 **RecyclerView**
 * [RecyclerView Fundamental](#RecyclerView-Fundamentals)
 * [DiffUtil and data binding with RecyclerView](#DiffUtil-and-data-binding-with-RecyclerView)
+* [GridLayout with RecyclerView](#gridlayout-with-recyclerview)
 
 # **Get Started**
 
@@ -920,3 +921,13 @@ Binding adapters
     .app:sleepDurationFormatted="@{sleep}"
 
 ```
+
+# **GridLayout with RecyclerView**
+*   A Layout manager can be used to determine the arrangement of items in a `RecyclerView`.
+*   `RecyclerView` comes with built-in layout managers for common use cases such as `LinearLayout` for horizontal and vertical lists, and `GridLayout` for grids.
+*   For more complicated use cases, you can implement a custom `LayoutManager`.
+*   From a design perspective, `GridLayout` is best used for lists of items that can be represented as icons or images.
+*   `GridLayout` arranges items in a grid of rows and columns. Assuming vertical scrolling, each item in a row takes up what's called a "span."
+*   You can customize how many spans an item takes up, creating more interesting grids without the need for a custom layout manager.
+*   Create an item layout for one item in the grid, and the layout manager takes care of arranging the items.
+*   You can set the `LayoutManager` for the `RecyclerView` either in the XML layout file that contains the `<RecyclerView>` element, or you can set it programmatically.
