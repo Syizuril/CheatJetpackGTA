@@ -42,7 +42,10 @@ Android Kotlin Cheatsheet
 * [Interacting with RecyclerView Items](#interacting-with-recyclerview-items)
 * [Header in RecyclerView](#Header-in-RecyclerView)
 
-* [Connecting to the internet](#Getting-Data-From-The-Internet)
+
+**Connecting to the internet**
+* [Getting Data From The Internet](#Getting-Data-From-The-Internet)
+* [Loading and Displaying Images from Internet](#Loading-and-Displaying-Images-from-Internet)
 
 
 # **Get Started**
@@ -1031,3 +1034,5 @@ These are the major steps for adding a header:
 *   The [Moshi](https://github.com/square/moshi) library is an Android JSON parser that converts a JSON string into Kotlin objects. Retrofit has a converter that works with Moshi.
 *   Moshi matches the keys in a JSON response with properties in a data object that have the same name.
 *   To use a different property name for a key, annotate that property with the `@Json` annotation and the JSON key name.
+
+# **Loading and Displaying Images from Internet**

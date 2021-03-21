@@ -33,14 +33,21 @@ import javax.crypto.MacSpi
 /**
  * The [ViewModel] that is attached to the [OverviewFragment].
  */
+
+enum class MarsApiStatus { LOADING, ERROR, DONE }
+
 class OverviewViewModel : ViewModel() {
 
-    // The internal MutableLiveData String that stores the most recent response
-    private val _response = MutableLiveData<String>()
+    // The internal MutableLiveData String that stores the most recent status
+    private val _status = MutableLiveData<MarsApiStatus>()
 
-    // The external immutable LiveData for the response String
-    val response: LiveData<String>
-        get() = _response
+    // The external immutable LiveData for the status String
+    val status: LiveData<MarsApiStatus>
+        get() = _status
+
+    private val _properties = MutableLiveData<List<MarsProperty>>()
+    val properties: LiveData<List<MarsProperty>>
+        get() = _properties
 
     /**
      * Call getMarsRealEstateProperties() on init so we can display status immediately.
@@ -54,11 +61,13 @@ class OverviewViewModel : ViewModel() {
      */
     private fun getMarsRealEstateProperties() {
         viewModelScope.launch {
+            _status.value = MarsApiStatus.ERROR
             try {
-                val listResult = MarsApi.retrofitService.getProperties()
-                _response.value = "Success: ${listResult.size} Mars properties retrieved"
+                _properties.value = MarsApi.retrofitService.getProperties()
+                _status.value = MarsApiStatus.DONE
             }catch (e: Exception){
-                _response.value = "Failure: ${e.message}"
+                _status.value = MarsApiStatus.ERROR
+                _properties.value = ArrayList()
             }
         }
     }
